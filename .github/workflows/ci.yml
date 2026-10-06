@@ -51,6 +51,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-flutter-
       
+      - name: Prepare CI environment assets
+        run: |
+          cp .github/fixtures/ci.env .env.dev
+          cp .github/fixtures/ci.env .env.prod
+
       - name: Install Dependencies
         run: flutter pub get
         
@@ -119,6 +124,11 @@ jobs:
             ${{ runner.os }}-flutter-${{ matrix.target }}-build-
             ${{ runner.os }}-flutter-${{ matrix.target }}-
       
+      - name: Prepare CI environment assets
+        run: |
+          cp .github/fixtures/ci.env .env.dev
+          cp .github/fixtures/ci.env .env.prod
+
       - name: Install Dependencies
         run: |
           flutter pub get --no-precompile # 跳过预编译

@@ -76,7 +76,6 @@ void main() {
                 onDelete: (_) {},
                 onEdit: (_) {},
                 onPin: (_) {},
-                isPinned: false,
               ),
             ),
           ),
@@ -90,6 +89,7 @@ void main() {
     });
 
     testWidgets('shows pin icon when pinned', (WidgetTester tester) async {
+      testAccount.pinnedTime = DateTime.utc(2024, 1, 1);
       await tester.runAsync(() async {
         await tester.pumpWidget(
           MaterialApp(
@@ -99,7 +99,6 @@ void main() {
                 onDelete: (_) {},
                 onEdit: (_) {},
                 onPin: (_) {},
-                isPinned: true,
               ),
             ),
           ),
@@ -195,7 +194,6 @@ void main() {
                 onDelete: (_) {},
                 onEdit: (_) {},
                 onPin: (_) {},
-                isPinned: false,
               ),
             ),
           ),
