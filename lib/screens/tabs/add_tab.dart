@@ -303,7 +303,8 @@ class _AddTabState extends State<AddTab> {
                             context: context,
                             builder: (context) => AlertDialog(
                               title: Text(l10n.translate('clear_all_accounts')),
-                              content: Text(l10n.translate('clear_all_accounts_confirm')),
+                              content: Text(
+                                  l10n.translate('clear_all_accounts_confirm')),
                               actions: [
                                 TextButton(
                                   onPressed: () => Navigator.pop(context),
@@ -315,7 +316,8 @@ class _AddTabState extends State<AddTab> {
                                     Navigator.pop(context);
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                        content: Text(l10n.translate('accounts_cleared')),
+                                        content: Text(
+                                            l10n.translate('accounts_cleared')),
                                       ),
                                     );
                                   },

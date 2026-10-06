@@ -36,7 +36,8 @@ class OTPToken {
     }
   }
 
-  factory OTPToken.fromJson(Map<String, dynamic> json) => _$OTPTokenFromJson(json);
+  factory OTPToken.fromJson(Map<String, dynamic> json) =>
+      _$OTPTokenFromJson(json);
 
   Map<String, dynamic> toJson() => _$OTPTokenToJson(this);
 
@@ -53,7 +54,8 @@ class OTPToken {
     String name;
     String? issuer;
 
-    final path = Uri.decodeComponent(uri.path.substring(1)); // Remove leading '/'
+    final path =
+        Uri.decodeComponent(uri.path.substring(1)); // Remove leading '/'
 
     if (path.contains(':')) {
       final parts = path.split(':');
@@ -83,7 +85,10 @@ class OTPToken {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is OTPToken && other.name == name && other.secret == secret && other.issuer == issuer;
+    return other is OTPToken &&
+        other.name == name &&
+        other.secret == secret &&
+        other.issuer == issuer;
   }
 
   @override

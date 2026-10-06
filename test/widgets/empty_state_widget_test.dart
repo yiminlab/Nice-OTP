@@ -19,13 +19,15 @@ void main() {
     testWidgets('renders correctly and handles button press',
         (WidgetTester tester) async {
       bool buttonPressed = false;
+      bool randomAccountAdded = false;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: EmptyStateWidget(
               onAddPressed: () => buttonPressed = true,
-              onAccountAdded: (account) {},
+              onAccountAdded: () => randomAccountAdded = true,
+              canAddMoreTokens: true,
             ),
           ),
         ),
@@ -39,15 +41,23 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(buttonPressed, true);
+
+      await tester.tap(find.text('add_random_account'));
+      await tester.pumpAndSettle();
+      expect(randomAccountAdded, true);
     });
 
-    testWidgets('EmptyStateWidget displays correctly',
+    testWidgets('does not add a random account when the limit is reached',
         (WidgetTester tester) async {
+      bool randomAccountAdded = false;
       await tester.pumpWidget(
         MaterialApp(
-          home: EmptyStateWidget(
-            onAddPressed: () {},
-            onAccountAdded: (account) {},
+          home: Scaffold(
+            body: EmptyStateWidget(
+              onAddPressed: () {},
+              onAccountAdded: () => randomAccountAdded = true,
+              canAddMoreTokens: false,
+            ),
           ),
         ),
       );
@@ -55,6 +65,10 @@ void main() {
       expect(find.text('no_accounts'), findsOneWidget);
       expect(find.text('add_account'), findsOneWidget);
       expect(find.byIcon(Icons.add), findsOneWidget);
+
+      await tester.tap(find.text('add_random_account'));
+      await tester.pumpAndSettle();
+      expect(randomAccountAdded, false);
     });
   });
 }

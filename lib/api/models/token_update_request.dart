@@ -14,7 +14,8 @@ class TokenUpdateRequest {
     required this.issuer,
   });
 
-  factory TokenUpdateRequest.fromJson(Map<String, dynamic> json) => _$TokenUpdateRequestFromJson(json);
+  factory TokenUpdateRequest.fromJson(Map<String, dynamic> json) =>
+      _$TokenUpdateRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$TokenUpdateRequestToJson(this);
 }

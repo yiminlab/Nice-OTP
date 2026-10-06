@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import '../api/services/otp_token_service.dart';
 import '../api/models/otp_token.dart';
 import '../api/models/token_update_request.dart';
@@ -14,11 +15,12 @@ class OTPTokenManager {
   OTPTokenManager._internal();
 
   // 同步令牌
-  Future<TokenOperationResponse> syncTokens(List<OTPToken> tokens, DateTime? lastSyncAt) async {
+  Future<TokenOperationResponse> syncTokens(
+      List<OTPToken> tokens, DateTime? lastSyncAt) async {
     try {
       return await _otpTokenService.syncTokens(tokens, lastSyncAt);
     } catch (e) {
-      print('同步令牌失败: $e');
+      debugPrint('同步令牌失败: $e');
       rethrow;
     }
   }
@@ -29,7 +31,7 @@ class OTPTokenManager {
       final response = await _otpTokenService.getTokens();
       return response.tokens;
     } catch (e) {
-      print('获取令牌失败: $e');
+      debugPrint('获取令牌失败: $e');
       rethrow;
     }
   }
@@ -39,17 +41,18 @@ class OTPTokenManager {
     try {
       return await _otpTokenService.createTokens(tokens);
     } catch (e) {
-      print('创建令牌失败: $e');
+      debugPrint('创建令牌失败: $e');
       rethrow;
     }
   }
 
   // 更新令牌
-  Future<TokenOperationResponse> updateTokens(List<TokenUpdateRequest> tokens) async {
+  Future<TokenOperationResponse> updateTokens(
+      List<TokenUpdateRequest> tokens) async {
     try {
       return await _otpTokenService.updateTokens(tokens);
     } catch (e) {
-      print('更新令牌失败: $e');
+      debugPrint('更新令牌失败: $e');
       rethrow;
     }
   }
@@ -59,7 +62,7 @@ class OTPTokenManager {
     try {
       return await _otpTokenService.deleteToken(id);
     } catch (e) {
-      print('删除令牌失败: $e');
+      debugPrint('删除令牌失败: $e');
       rethrow;
     }
   }
@@ -69,7 +72,7 @@ class OTPTokenManager {
     try {
       return await _otpTokenService.getDeletedTokens();
     } catch (e) {
-      print('获取已删除令牌失败: $e');
+      debugPrint('获取已删除令牌失败: $e');
       rethrow;
     }
   }
@@ -79,7 +82,7 @@ class OTPTokenManager {
     try {
       return await _otpTokenService.restoreTokens(ids);
     } catch (e) {
-      print('恢复令牌失败: $e');
+      debugPrint('恢复令牌失败: $e');
       rethrow;
     }
   }
@@ -89,7 +92,7 @@ class OTPTokenManager {
     try {
       return await _otpTokenService.deleteHistory();
     } catch (e) {
-      print('删除历史记录失败: $e');
+      debugPrint('删除历史记录失败: $e');
       rethrow;
     }
   }

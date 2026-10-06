@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:two_factor_authentication/api/services/auth_service.dart';
 import 'package:two_factor_authentication/manager/otp_token_manager.dart';
 import 'package:two_factor_authentication/manager/storage_manager.dart';
@@ -31,7 +32,7 @@ class CloudSyncManager {
         throw Exception(response.error ?? 'Toggle sync failed');
       }
     } catch (e) {
-      print('Failed to toggle sync: $e');
+      debugPrint('Failed to toggle sync: $e');
       rethrow;
     }
   }
@@ -52,15 +53,16 @@ class CloudSyncManager {
 
     if (_userStore.isSyncEnabled) {
       try {
-        final response = await _otpTokenManager.syncTokens(storageTokens, lastSyncAt);
+        final response =
+            await _otpTokenManager.syncTokens(storageTokens, lastSyncAt);
         if (response.success) {
           await syncAccounts(response.tokens);
           await syncLastSyncAt(response.syncTime);
           return;
         }
-        print(response.error);
+        debugPrint(response.error);
       } catch (e) {
-        print('Failed to sync local data: $e');
+        debugPrint('Failed to sync local data: $e');
       }
     }
 
@@ -85,9 +87,9 @@ class CloudSyncManager {
           await syncLastSyncAt(response.syncTime);
           return;
         }
-        print('Failed to sync local data: ${response.error}');
+        debugPrint('Failed to sync local data: ${response.error}');
       } catch (e) {
-        print('Failed to sync local data: $e');
+        debugPrint('Failed to sync local data: $e');
       }
     }
   }
@@ -105,9 +107,9 @@ class CloudSyncManager {
           await syncLastSyncAt(response.syncTime);
           return;
         }
-        print('Failed to update token: ${response.error}');
+        debugPrint('Failed to update token: ${response.error}');
       } catch (e) {
-        print('Failed to update token: $e');
+        debugPrint('Failed to update token: $e');
       }
     }
   }
@@ -124,9 +126,9 @@ class CloudSyncManager {
         if (response.success) {
           await syncLastSyncAt(response.syncTime);
         }
-        print('Failed to delete token: ${response.error}');
+        debugPrint('Failed to delete token: ${response.error}');
       } catch (e) {
-        print('Failed to delete token: $e');
+        debugPrint('Failed to delete token: $e');
       }
     }
   }
@@ -144,9 +146,9 @@ class CloudSyncManager {
           await syncLastSyncAt(response.syncTime);
           return;
         }
-        print('Failed to pin token: ${response.error}');
+        debugPrint('Failed to pin token: ${response.error}');
       } catch (e) {
-        print('Failed to pin token: $e');
+        debugPrint('Failed to pin token: $e');
       }
     }
   }
@@ -156,7 +158,7 @@ class CloudSyncManager {
     try {
       return await _otpTokenService.getDeletedTokens();
     } catch (e) {
-      print('Failed to get deleted tokens: $e');
+      debugPrint('Failed to get deleted tokens: $e');
       rethrow;
     }
   }
@@ -166,7 +168,7 @@ class CloudSyncManager {
     try {
       return await _otpTokenService.restoreTokens(ids);
     } catch (e) {
-      print('Failed to restore tokens: $e');
+      debugPrint('Failed to restore tokens: $e');
       rethrow;
     }
   }
@@ -176,7 +178,7 @@ class CloudSyncManager {
     try {
       return await _otpTokenService.deleteHistory();
     } catch (e) {
-      print('Failed to delete history: $e');
+      debugPrint('Failed to delete history: $e');
       rethrow;
     }
   }

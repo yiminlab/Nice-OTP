@@ -44,7 +44,8 @@ void main() {
     });
 
     test('fromUri parses otpauth URI correctly', () {
-      final uri = Uri.parse('otpauth://totp/Test%20Issuer:Test%20User?secret=TESTSECRET&issuer=Test%20Issuer');
+      final uri = Uri.parse(
+          'otpauth://totp/Test%20Issuer:Test%20User?secret=TESTSECRET&issuer=Test%20Issuer');
 
       final account = OTPToken.fromUri(uri);
 
@@ -54,7 +55,8 @@ void main() {
     });
 
     test('fromUri handles URI without issuer in parameters', () {
-      final uri = Uri.parse('otpauth://totp/Test%20Issuer:Test%20User?secret=TESTSECRET');
+      final uri = Uri.parse(
+          'otpauth://totp/Test%20Issuer:Test%20User?secret=TESTSECRET');
 
       final account = OTPToken.fromUri(uri);
 
@@ -64,7 +66,8 @@ void main() {
     });
 
     test('fromUri handles URI without issuer in label', () {
-      final uri = Uri.parse('otpauth://totp/Test%20User?secret=TESTSECRET&issuer=Test%20Issuer');
+      final uri = Uri.parse(
+          'otpauth://totp/Test%20User?secret=TESTSECRET&issuer=Test%20Issuer');
 
       final account = OTPToken.fromUri(uri);
 
@@ -83,7 +86,8 @@ void main() {
     });
 
     test('fromUri throws FormatException for missing secret', () {
-      final uriWithoutSecret = Uri.parse('otpauth://totp/Test%20Issuer:Test%20User');
+      final uriWithoutSecret =
+          Uri.parse('otpauth://totp/Test%20Issuer:Test%20User');
 
       expect(
         () => OTPToken.fromUri(uriWithoutSecret),

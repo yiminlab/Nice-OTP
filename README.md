@@ -2,9 +2,9 @@
 
 A secure and user-friendly OTP (One-Time Password) manager application built with Flutter, supporting multiple platforms and languages.
 
-[![Coverage Status](https://codecov.io/gh/Wangggym/two_factor_authentication/branch/master/graph/badge.svg)](https://codecov.io/gh/Wangggym/two_factor_authentication)
+[![Coverage Status](https://codecov.io/gh/yiminlab/Nice-OTP/branch/master/graph/badge.svg)](https://codecov.io/gh/yiminlab/Nice-OTP)
 
-[@Latest Release](https://github.com/Wangggym/two_factor_authentication/releases)
+[@Latest Release](https://github.com/yiminlab/Nice-OTP/releases)
 
 
 ## WeChat Mini Program

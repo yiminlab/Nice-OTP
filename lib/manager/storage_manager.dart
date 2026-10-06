@@ -51,7 +51,8 @@ class StorageManager {
 
   Future<void> setAccounts(List<OTPToken> accounts) async {
     await init();
-    final String encodedData = json.encode(accounts.map((account) => account.toJson()).toList());
+    final String encodedData =
+        json.encode(accounts.map((account) => account.toJson()).toList());
     await _prefs.setString(_accountsKey, encodedData);
   }
 

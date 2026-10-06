@@ -12,7 +12,8 @@ class EnvConfig {
   Future<void> initialize(Environment env) async {
     environment = env;
     // 根据环境加载不同的 .env 文件
-    await dotenv.load(fileName: env == Environment.dev ? '.env.dev' : '.env.prod');
+    await dotenv.load(
+        fileName: env == Environment.dev ? '.env.dev' : '.env.prod');
   }
 
   String get debugToken => dotenv.env['DEBUG_TOKEN'] ?? "";

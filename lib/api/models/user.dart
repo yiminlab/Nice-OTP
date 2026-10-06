@@ -5,31 +5,31 @@ part 'user.g.dart';
 @JsonSerializable()
 class User {
   final String id;
-  
+
   @JsonKey(name: 'email')
   final String? email;
-  
+
   @JsonKey(name: 'username')
   final String? username;
-  
+
   @JsonKey(name: 'display_name')
   final String? displayName;
-  
+
   @JsonKey(name: 'avatar_url')
   final String? avatarUrl;
-  
+
   @JsonKey(name: 'is_active', defaultValue: true)
   final bool isActive;
-  
+
   @JsonKey(name: 'email_verified', defaultValue: false)
   final bool emailVerified;
-  
+
   @JsonKey(name: 'sync_enabled', defaultValue: false)
   bool syncEnabled;
 
   @JsonKey(name: 'last_sync_at')
   final DateTime? lastSyncAt;
-  
+
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
 
@@ -45,7 +45,7 @@ class User {
     this.lastSyncAt,
     required this.createdAt,
   });
-  
+
   // 添加一个便捷的 nickname getter 用于兼容旧代码
   String get nickname => displayName ?? username ?? email ?? 'User';
 

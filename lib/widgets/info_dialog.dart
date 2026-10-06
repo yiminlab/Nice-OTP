@@ -23,7 +23,7 @@ class _InfoDialogState extends State<InfoDialog> {
   bool _isLoading = false;
   final cloudSync = CloudSyncManager();
   final userStore = UserStore();
-  Future<void> _handleSync(BuildContext context) async {
+  Future<void> _handleSync() async {
     if (_isLoading) return;
 
     setState(() => _isLoading = true);
@@ -36,7 +36,8 @@ class _InfoDialogState extends State<InfoDialog> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(LocalizationService.of(context).translate('sync_started')),
+            content:
+                Text(LocalizationService.of(context).translate('sync_started')),
             backgroundColor: Colors.green,
           ),
         );
@@ -57,8 +58,8 @@ class _InfoDialogState extends State<InfoDialog> {
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);
+        Navigator.pop(context);
       }
-      Navigator.pop(context);
     }
   }
 
@@ -87,7 +88,7 @@ class _InfoDialogState extends State<InfoDialog> {
           child: Text(l10n.translate('cancel')),
         ),
         TextButton(
-          onPressed: _isLoading ? null : () => _handleSync(context),
+          onPressed: _isLoading ? null : _handleSync,
           child: Text(l10n.translate('sync')),
         ),
       ],

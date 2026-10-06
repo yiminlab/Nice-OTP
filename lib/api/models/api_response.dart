@@ -20,7 +20,8 @@ class ApiResponse<T> {
   ) =>
       _$ApiResponseFromJson(json, fromJsonT);
 
-  Map<String, dynamic> toJson(Object? Function(T value) toJsonT) => _$ApiResponseToJson(this, toJsonT);
+  Map<String, dynamic> toJson(Object? Function(T value) toJsonT) =>
+      _$ApiResponseToJson(this, toJsonT);
 }
 
 @JsonSerializable()
@@ -32,7 +33,8 @@ class ToggleSyncResponse {
     required this.syncEnabled,
   });
 
-  factory ToggleSyncResponse.fromJson(Map<String, dynamic> json) => _$ToggleSyncResponseFromJson(json);
+  factory ToggleSyncResponse.fromJson(Map<String, dynamic> json) =>
+      _$ToggleSyncResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ToggleSyncResponseToJson(this);
 }
