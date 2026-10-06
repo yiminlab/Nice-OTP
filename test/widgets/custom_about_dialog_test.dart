@@ -31,8 +31,8 @@ void main() {
       );
 
       expect(find.text('app_name'), findsOneWidget);
-      expect(find.text('Version 1.0.0'), findsOneWidget);
-      expect(find.text('© 2024 Nice OTP'), findsOneWidget);
+      expect(find.text('Version 2.0.0'), findsOneWidget);
+      expect(find.text('© ${DateTime.now().year} Nice OTP'), findsOneWidget);
       expect(find.text('disclaimer'), findsOneWidget);
       expect(find.text('close'), findsOneWidget);
     });
