@@ -14,13 +14,15 @@ class OTPService {
     return timeStep - (now % timeStep);
   }
 
-  static OTPData generateOTP(String secret, {int timeStep = 30, int digits = 6, required int now}) {
+  static OTPData generateOTP(String secret,
+      {int timeStep = 30, int digits = 6, required int now}) {
     try {
       final step = now ~/ timeStep;
       final hmac = Hmac(sha1, Base32.decode(secret));
       final hmacResult = hmac.convert(intToBytes(step));
       final offset = hmacResult.bytes[hmacResult.bytes.length - 1] & 0xf;
-      final binary = ByteData.sublistView(Uint8List.fromList(hmacResult.bytes.sublist(offset, offset + 4)))
+      final binary = ByteData.sublistView(Uint8List.fromList(
+                  hmacResult.bytes.sublist(offset, offset + 4)))
               .getUint32(0, Endian.big) &
           0x7fffffff;
       final otp = binary % pow(10, digits).toInt();
@@ -47,7 +49,8 @@ class OTPService {
   static String generateRandomSecret() {
     const String chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
     Random rnd = Random.secure();
-    return String.fromCharCodes(Iterable.generate(32, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
+    return String.fromCharCodes(Iterable.generate(
+        32, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
   }
 
   static OTPToken addRandomAccount() {

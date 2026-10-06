@@ -79,14 +79,14 @@ class AuthManager {
         print('调用登录接口...');
         final loginResponse = await _authService.login(weChatCode);
         print('登录响应成功');
-        
+
         final accessToken = loginResponse.accessToken;
         print('登录成功，token 长度: ${accessToken.length}');
         print('Token 前20字符: ${accessToken.substring(0, 20)}...');
-        
+
         await setToken(accessToken);
         print('✅ Token 已保存到 Storage');
-        
+
         // 直接使用登录返回的用户信息
         _userStore.setUser(loginResponse.user);
         print('✅ 用户信息已保存，ID: ${loginResponse.user.id}');

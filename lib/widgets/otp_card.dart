@@ -81,7 +81,8 @@ class _OTPCardState extends State<OTPCard> {
   }
 
   void _showOptionsMenu(BuildContext context, LongPressStartDetails details) {
-    final RenderBox overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
+    final RenderBox overlay =
+        Overlay.of(context).context.findRenderObject() as RenderBox;
 
     final position = RelativeRect.fromRect(
       details.globalPosition & const Size(40, 40),
@@ -132,7 +133,8 @@ class _OTPCardState extends State<OTPCard> {
                   if (widget.account.isPinned)
                     const Padding(
                       padding: EdgeInsets.only(right: 8),
-                      child: Icon(Icons.push_pin, size: 16, color: Colors.amber),
+                      child:
+                          Icon(Icons.push_pin, size: 16, color: Colors.amber),
                     ),
                   ServiceIcon(
                     issuer: widget.account.issuer ?? '',

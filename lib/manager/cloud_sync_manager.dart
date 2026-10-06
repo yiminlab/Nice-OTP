@@ -52,7 +52,8 @@ class CloudSyncManager {
 
     if (_userStore.isSyncEnabled) {
       try {
-        final response = await _otpTokenManager.syncTokens(storageTokens, lastSyncAt);
+        final response =
+            await _otpTokenManager.syncTokens(storageTokens, lastSyncAt);
         if (response.success) {
           await syncAccounts(response.tokens);
           await syncLastSyncAt(response.syncTime);

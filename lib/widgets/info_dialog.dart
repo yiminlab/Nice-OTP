@@ -36,7 +36,8 @@ class _InfoDialogState extends State<InfoDialog> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(LocalizationService.of(context).translate('sync_started')),
+            content:
+                Text(LocalizationService.of(context).translate('sync_started')),
             backgroundColor: Colors.green,
           ),
         );

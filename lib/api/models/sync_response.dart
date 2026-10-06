@@ -16,6 +16,7 @@ class SyncResponse {
     required this.error,
   });
 
-  factory SyncResponse.fromJson(Map<String, dynamic> json) => _$SyncResponseFromJson(json);
+  factory SyncResponse.fromJson(Map<String, dynamic> json) =>
+      _$SyncResponseFromJson(json);
   Map<String, dynamic> toJson() => _$SyncResponseToJson(this);
 }

@@ -105,12 +105,14 @@ class RemainingSecondsContainer extends StatefulWidget {
   const RemainingSecondsContainer({super.key, required this.child});
 
   @override
-  State<RemainingSecondsContainer> createState() => _RemainingSecondsContainerState();
+  State<RemainingSecondsContainer> createState() =>
+      _RemainingSecondsContainerState();
 }
 
 class _RemainingSecondsContainerState extends State<RemainingSecondsContainer> {
   late Timer _timer;
-  late int _remainingSeconds = OTPService.getRemainingSeconds(now: OTPService.getNow());
+  late int _remainingSeconds =
+      OTPService.getRemainingSeconds(now: OTPService.getNow());
   late Function update = (int now) {};
 
   @override
@@ -139,7 +141,10 @@ class _RemainingSecondsContainerState extends State<RemainingSecondsContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return RemainingSecondsProvider(remainingSeconds: _remainingSeconds, update: update, child: widget.child);
+    return RemainingSecondsProvider(
+        remainingSeconds: _remainingSeconds,
+        update: update,
+        child: widget.child);
   }
 }
 
@@ -154,7 +159,8 @@ class RemainingSecondsProvider extends InheritedWidget {
   });
 
   static RemainingSecondsProvider of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<RemainingSecondsProvider>() ??
+    return context
+            .dependOnInheritedWidgetOfExactType<RemainingSecondsProvider>() ??
         RemainingSecondsProvider(
           remainingSeconds: 30,
           update: (int now) {},
@@ -168,7 +174,8 @@ class RemainingSecondsProvider extends InheritedWidget {
   }
 }
 
-class RemainingSecondsConsumer<T extends RemainingSecondsProvider> extends StatelessWidget {
+class RemainingSecondsConsumer<T extends RemainingSecondsProvider>
+    extends StatelessWidget {
   const RemainingSecondsConsumer({
     super.key,
     required this.builder,

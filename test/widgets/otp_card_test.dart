@@ -42,7 +42,8 @@ void main() {
     );
 
     // Set up clipboard channel mock
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
       SystemChannels.platform,
       (MethodCall methodCall) async {
         if (methodCall.method == 'Clipboard.setData') {
@@ -55,7 +56,8 @@ void main() {
 
   tearDown(() {
     // Clear clipboard mock
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
       SystemChannels.platform,
       null,
     );
@@ -63,7 +65,8 @@ void main() {
   });
 
   group('OTPCard Tests', () {
-    testWidgets('renders basic elements correctly', (WidgetTester tester) async {
+    testWidgets('renders basic elements correctly',
+        (WidgetTester tester) async {
       await tester.runAsync(() async {
         await tester.pumpWidget(
           MaterialApp(
@@ -181,7 +184,8 @@ void main() {
       });
     });
 
-    testWidgets('copies OTP to clipboard when tapped', (WidgetTester tester) async {
+    testWidgets('copies OTP to clipboard when tapped',
+        (WidgetTester tester) async {
       await tester.runAsync(() async {
         await tester.pumpWidget(
           MaterialApp(
@@ -217,6 +221,7 @@ void main() {
       });
     });
 
-    testWidgets('shows options menu on long press', (WidgetTester tester) async {});
+    testWidgets(
+        'shows options menu on long press', (WidgetTester tester) async {});
   });
 }

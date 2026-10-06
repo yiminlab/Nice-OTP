@@ -29,14 +29,16 @@ class UserStore {
   // 设置最后同步时间
   void setLastSyncAt(DateTime syncTime) {
     if (_currentUserNotifier.value != null) {
-      _currentUserNotifier.value = _currentUserNotifier.value!.copyWith(lastSyncAt: syncTime);
+      _currentUserNotifier.value =
+          _currentUserNotifier.value!.copyWith(lastSyncAt: syncTime);
     }
   }
 
   // 设置同步状态
   void setSync(bool syncEnabled) {
     if (_currentUserNotifier.value != null) {
-      _currentUserNotifier.value = _currentUserNotifier.value!.copyWith(syncEnabled: syncEnabled);
+      _currentUserNotifier.value =
+          _currentUserNotifier.value!.copyWith(syncEnabled: syncEnabled);
     }
   }
 

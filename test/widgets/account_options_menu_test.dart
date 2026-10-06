@@ -27,7 +27,8 @@ void main() {
       );
     });
 
-    testWidgets('shows menu and handles callbacks correctly', (WidgetTester tester) async {
+    testWidgets('shows menu and handles callbacks correctly',
+        (WidgetTester tester) async {
       bool copyPressed = false;
       bool editPressed = false;
       bool pinPressed = false;
@@ -88,7 +89,8 @@ void main() {
       expect(deletePressed, true);
     });
 
-    testWidgets('renders correct pin/unpin text based on isPinned state', (WidgetTester tester) async {
+    testWidgets('renders correct pin/unpin text based on isPinned state',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Builder(

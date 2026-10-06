@@ -7,16 +7,16 @@ part 'login_response.g.dart';
 class LoginResponse {
   @JsonKey(name: 'access_token')
   final String accessToken;
-  
+
   @JsonKey(name: 'refresh_token')
   final String refreshToken;
-  
+
   @JsonKey(name: 'token_type')
   final String tokenType;
-  
+
   @JsonKey(name: 'expires_in')
   final int expiresIn;
-  
+
   final User user;
 
   LoginResponse({
@@ -27,6 +27,7 @@ class LoginResponse {
     required this.user,
   });
 
-  factory LoginResponse.fromJson(Map<String, dynamic> json) => _$LoginResponseFromJson(json);
+  factory LoginResponse.fromJson(Map<String, dynamic> json) =>
+      _$LoginResponseFromJson(json);
   Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
 }

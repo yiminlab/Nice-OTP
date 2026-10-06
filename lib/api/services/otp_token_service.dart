@@ -10,7 +10,8 @@ import '../models/token_restore_response.dart';
 class OTPTokenService {
   final Dio _dio = DioClient().dio;
 
-  Future<TokenOperationResponse> syncTokens(List<OTPToken> tokens, DateTime? lastSyncAt) async {
+  Future<TokenOperationResponse> syncTokens(
+      List<OTPToken> tokens, DateTime? lastSyncAt) async {
     try {
       final response = await _dio.put('/otp/sync', data: {
         'tokens': tokens.map((t) => t.toJson()).toList(),
@@ -42,7 +43,8 @@ class OTPTokenService {
     }
   }
 
-  Future<TokenOperationResponse> updateTokens(List<TokenUpdateRequest> tokens) async {
+  Future<TokenOperationResponse> updateTokens(
+      List<TokenUpdateRequest> tokens) async {
     try {
       final response = await _dio.put('/otp/tokens/sync', data: {
         'tokens': tokens.map((t) => t.toJson()).toList(),
@@ -75,7 +77,9 @@ class OTPTokenService {
     try {
       final response = await _dio.get('/otp/tokens/deleted');
       final data = response.data as Map<String, dynamic>;
-      return (data['tokens'] as List).map((item) => OTPToken.fromJson(item as Map<String, dynamic>)).toList();
+      return (data['tokens'] as List)
+          .map((item) => OTPToken.fromJson(item as Map<String, dynamic>))
+          .toList();
     } on DioException {
       rethrow;
     }
@@ -83,7 +87,8 @@ class OTPTokenService {
 
   Future<TokenRestoreResponse> restoreTokens(List<String> ids) async {
     try {
-      final response = await _dio.post('/otp/tokens/restore', data: {'ids': ids});
+      final response =
+          await _dio.post('/otp/tokens/restore', data: {'ids': ids});
       return TokenRestoreResponse.fromJson(response.data);
     } on DioException {
       rethrow;

@@ -19,7 +19,8 @@ class TokenOperationResponse {
     required this.error,
   });
 
-  factory TokenOperationResponse.fromJson(Map<String, dynamic> json) => _$TokenOperationResponseFromJson(json);
+  factory TokenOperationResponse.fromJson(Map<String, dynamic> json) =>
+      _$TokenOperationResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$TokenOperationResponseToJson(this);
 }

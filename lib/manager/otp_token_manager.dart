@@ -14,7 +14,8 @@ class OTPTokenManager {
   OTPTokenManager._internal();
 
   // 同步令牌
-  Future<TokenOperationResponse> syncTokens(List<OTPToken> tokens, DateTime? lastSyncAt) async {
+  Future<TokenOperationResponse> syncTokens(
+      List<OTPToken> tokens, DateTime? lastSyncAt) async {
     try {
       return await _otpTokenService.syncTokens(tokens, lastSyncAt);
     } catch (e) {
@@ -45,7 +46,8 @@ class OTPTokenManager {
   }
 
   // 更新令牌
-  Future<TokenOperationResponse> updateTokens(List<TokenUpdateRequest> tokens) async {
+  Future<TokenOperationResponse> updateTokens(
+      List<TokenUpdateRequest> tokens) async {
     try {
       return await _otpTokenService.updateTokens(tokens);
     } catch (e) {

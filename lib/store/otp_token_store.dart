@@ -10,7 +10,8 @@ class OTPTokenStore {
   OTPTokenStore._internal();
 
   // 使用 ValueNotifier 管理 tokens 列表
-  final ValueNotifier<List<OTPToken>> tokens = ValueNotifier<List<OTPToken>>([]);
+  final ValueNotifier<List<OTPToken>> tokens =
+      ValueNotifier<List<OTPToken>>([]);
 
   // 获取所有 tokens
   List<OTPToken> get allTokens => tokens.value;
@@ -18,9 +19,13 @@ class OTPTokenStore {
   // 获取排序后的 tokens
   // 先排pinned 时间，再按创建时间排序
   List<OTPToken> get sortedTokens {
-    final pinnedTokens = tokens.value.where((token) => token.pinnedTime != null).toList()
+    final pinnedTokens = tokens.value
+        .where((token) => token.pinnedTime != null)
+        .toList()
       ..sort((a, b) => b.pinnedTime!.compareTo(a.pinnedTime!));
-    final unpinnedTokens = tokens.value.where((token) => token.pinnedTime == null).toList()
+    final unpinnedTokens = tokens.value
+        .where((token) => token.pinnedTime == null)
+        .toList()
       ..sort((a, b) => a.createdAt?.compareTo(b.createdAt ?? DateTime(0)) ?? 0);
     return pinnedTokens..addAll(unpinnedTokens);
   }
@@ -46,14 +51,16 @@ class OTPTokenStore {
 
   // 删除单个 token
   List<OTPToken> removeToken(String id) {
-    final updatedTokens = tokens.value.where((token) => token.id != id).toList();
+    final updatedTokens =
+        tokens.value.where((token) => token.id != id).toList();
     tokens.value = updatedTokens;
     return updatedTokens;
   }
 
   // 更新单个 token
   List<OTPToken> updateToken(TokenUpdateRequest updatedToken) {
-    final tokenIndex = tokens.value.indexWhere((token) => token.id == updatedToken.id);
+    final tokenIndex =
+        tokens.value.indexWhere((token) => token.id == updatedToken.id);
     if (tokenIndex != -1) {
       final updatedTokens = List<OTPToken>.from(tokens.value);
       final token = updatedTokens[tokenIndex];
