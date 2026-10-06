@@ -48,6 +48,7 @@ class ProfileTab extends StatelessWidget {
                         if (userStore.isSyncEnabled) {
                           cloudSync.sync();
                         }
+                        if (!context.mounted) return;
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(l10n.translate('operation_success')),
@@ -55,6 +56,7 @@ class ProfileTab extends StatelessWidget {
                           ),
                         );
                       } catch (e) {
+                        if (!context.mounted) return;
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(l10n.translate('operation_failed')),

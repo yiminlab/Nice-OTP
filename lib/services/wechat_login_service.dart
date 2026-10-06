@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:mpflutter_wechat_api/mpflutter_wechat_api.dart';
 
 class WeChatLoginService {
@@ -21,7 +22,7 @@ class WeChatLoginService {
 
       return await completer.future;
     } catch (e) {
-      print('Failed to get login code: $e');
+      debugPrint('Failed to get login code: $e');
       rethrow;
     }
   }
