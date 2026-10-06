@@ -17,6 +17,7 @@ concurrency:
 env:
   FLUTTER_VERSION: '3.24.1'
   JAVA_VERSION: '17'
+  COCOAPODS_VERSION: '1.17.0'
 
 jobs:
   # 复用的 setup 步骤
@@ -91,7 +92,7 @@ jobs:
           - os: macos-latest
             target: ios
             build-command: flutter build ios --debug --no-codesign # 使用 debug 模式加快构建
-      fail-fast: true # 开启快速失败，节省时间
+      fail-fast: false # 保留所有平台的独立构建结果
     
     runs-on: ${{ matrix.os }}
     steps:
@@ -133,7 +134,8 @@ jobs:
         run: |
           flutter pub get --no-precompile # 跳过预编译
           if [ "${{ matrix.target }}" = "ios" ]; then
-            cd ios && pod install --deployment && cd .. # 使用更快的 pod install
+            gem list --installed cocoapods --version "$COCOAPODS_VERSION" || gem install cocoapods --version "$COCOAPODS_VERSION" --no-document
+            cd ios && pod "_${COCOAPODS_VERSION}_" install --deployment && cd ..
           fi
       
       - name: Test Build ${{ matrix.target }}
